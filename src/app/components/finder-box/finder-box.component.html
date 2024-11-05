@@ -1,0 +1,33 @@
+<div>
+    <p-card header="Pokemon Finder" subheader="Gotta catch 'em all!" [style]="{ width: '400px' }">
+        <div>
+            <p-floatLabel>
+                <input 
+                    pInputText id="username or id" 
+                    [(ngModel)]="value"
+                    #pokemonName
+                    (input)="updateName(pokemonName.value)"
+                />
+                <label for="username or id">Pokemon name or ID</label>
+            </p-floatLabel>
+            <p-button icon="pi pi-search" (onClick)="loadPokemon()"></p-button>
+        </div>
+        @if(loading()){
+            <div>
+                <p-progressSpinner ariaLabel="loading" />
+            </div>
+        }
+        @if(this.animationArray().length === 2 && this.imagenActual()){
+            <h1>{{pokemonData().species.name}}</h1>
+            <img [src]="imagenActual()" alt="Imagen de animación" height="150" width="150">
+        }
+        <ng-template pTemplate="footer">            
+                           
+        </ng-template>
+    </p-card>
+    <div>
+        <p-messages [(value)]="mensaje" [closable]="true" />
+    </div> 
+</div>
+
+
